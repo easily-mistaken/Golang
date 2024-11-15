@@ -1,11 +1,16 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"math"
+)
 
 func main() {
 	// fmt.Println("hello world")
 	values()
 	variables()
+	constants()
+	loops()
 }
 
 func values() {
@@ -35,4 +40,45 @@ func variables() {
 
 	f := "apple"
 	fmt.Println(f)
+}
+
+const s string = "constant"
+
+func constants() {
+	fmt.Println(s)
+
+	const n = 500000000
+
+	const d = 3e20 / n
+	fmt.Println(int64(d))
+
+	fmt.Println(math.Sin(n))
+}
+
+func loops() {
+	i := 1
+	for i <= 3 {
+		fmt.Println()
+		i = i + 1
+	}
+
+	for j := 0; j < 3; j++ {
+        fmt.Println(j)
+    }
+
+    for i := range 3 {
+        fmt.Println("range", i)
+    }
+
+    for {
+        fmt.Println("loop")
+        break
+    }
+
+    for n := range 6 {
+        if n%2 == 0 {
+            continue
+        }
+        fmt.Println(n)
+    }
 }
