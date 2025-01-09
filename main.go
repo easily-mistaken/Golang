@@ -7,6 +7,8 @@ import (
 	"time"
 )
 
+
+
 func main() {
 	// fmt.Println("hello world")
 	// values()
@@ -16,7 +18,11 @@ func main() {
 	// ifelse()
 	// switchcase()
 	// switchAsIfelse()
-	array()
+	// array()
+	// slices()
+	// test()
+	// fmt.Println(fact(7), fib(7))
+	rangeExample()
 }
 
 func values() {
@@ -179,4 +185,103 @@ func array(){
 
 	twoD2 := [2][3]int{{1, 2, 3}, {4, 5, 6}}
 	fmt.Println("2d2: ", twoD2)
+}
+
+func slices(){
+
+	var s[]string
+	fmt.Println("uninit:", s,s==nil, len(s)==0)
+
+	s = make([]string, 3)
+	fmt.Println("emp:", s, "len:", len(s), "cap:", cap(s))
+
+	s[0] = "a"
+	s[1] = "b"
+	s[2] = "c"
+	fmt.Println("set:", s)
+	fmt.Println("get:", s[2])
+
+	fmt.Println("len:", len(s))
+
+	s = append(s, "d")
+	s = append(s, "e", "f")
+	fmt.Println("apd:", s)
+
+	c := make([]string, len(s))
+	copy(c, s)
+	fmt.Println("cpy:", c)
+
+	l := s[2:5]
+	fmt.Println("sl1:", l)
+
+	l = s[:5]
+	fmt.Println("sl2:", l)
+
+	l = s[2:]
+	fmt.Println("sl3:", l)
+
+	t := []string{"g", "h", "i"}
+	fmt.Println("dcl:", t)
+
+	twoD := make([][]int, 3)
+	for i := 0; i < 3; i++ {
+		innerLen := i + 1
+		twoD[i] = make([]int, innerLen)
+		for j := 0; j < innerLen; j++ {
+			twoD[i][j] = i + j
+		}
+	}
+	fmt.Println("2d:", twoD)
+}
+func test(){
+	// Slice is a descriptor of an array segment
+	// consists of a pointer to the array,
+	// the length of the segment,
+	// and its capacity
+
+	var a [8]int
+	var s = a[0:5]
+	fmt.Println("s:", s, "len:", len(s), "cap:", cap(s))
+}
+
+func fact(n int) int{
+	if n==0 {return 1}
+	return n*fact(n-1)
+}
+
+func fib(n int) int{
+	if n<2 {return n}
+	return fib(n-1)+fib(n-2)
+}
+
+func rangeExample(){
+	nums := []int{2, 3, 4}
+    sum := 0
+    for _, num := range nums {
+        sum += num
+    }
+    fmt.Println("sum:", sum)
+
+	for i, num := range nums {
+		if num == 3 {
+			fmt.Println("index:", i)
+		}
+	}
+
+	kvs := map[string]string{"a": "apple", "b": "banana"}
+	for k, v := range kvs {
+		fmt.Printf("%s -> %s\n", k, v)
+	}
+
+	for k := range kvs {
+		fmt.Println("key:", k)
+	}
+
+	for i, c := range "go" {
+		fmt.Println(i, c)
+	}
+
+	for i, c := range "go" {
+		fmt.Println(i, string(c))
+	}
 }
